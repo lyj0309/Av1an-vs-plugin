@@ -30,10 +30,16 @@ RUN pacman -S libass --noconfirm
 COPY build.sh /workspace/
 RUN chmod +x build.sh && ./build.sh 
 
+COPY build_other.sh /workspace/
+RUN chmod +x build.sh && ./build.sh 
+
 RUN pip install git+https://github.com/OpusGang/awsmfunc.git --break-system-packages && \
     pip install git+https://github.com/Jaded-Encoding-Thaumaturgy/vs-tools.git --break-system-packages && \
     pip3 install git+https://github.com/HomeOfVapourSynthEvolution/mvsfunc --break-system-packages  &&\
     pip3 install git+https://github.com/HomeOfVapourSynthEvolution/havsfunc --break-system-packages
-WORKDIR /workspace
+
+WORKDIR /videos
+RUN rm -r /workspace
+
 # USER app_user
 ENTRYPOINT ["/bin/bash"]
