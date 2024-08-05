@@ -1,0 +1,9 @@
+services:
+
+  av1an:
+    # image: masterofzen/av1an:master
+    image: av1
+    privileged: true
+    volumes:
+      - /ssd/data/:/videos
+
