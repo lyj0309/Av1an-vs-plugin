@@ -14,7 +14,14 @@ src = core.ffms2.Source(source)
 
 src= awf.FrameInfo(src, 'Source') 
 src = core.std.Crop(src, top=22, bottom=22,left=2,right=2) 
-src.set_output()
+Output = 1
+#以下为Output Mode的实现，请不要更改
+if Output == 1:
+	select = core.std.SelectEvery(src[8000:-8000],cycle=6000,offsets=range(60))
+	clip = core.std.AssumeFPS(select, fpsnum=src.fps.numerator, fpsden=src.fps.denominator)
+	clip = clip.set_output()
+else:
+	final = src.Depth(src, 10).set_output()
 #打上source标签
 
 #(every,length,offset) = (3000,90,10000)
