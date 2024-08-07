@@ -41,7 +41,7 @@ build_and_move() {
     repo_name=$(basename "$repo_url" .git)
 
     # Clone the repository
-    git clone "$repo_url" || exit 1
+    git clone --depth 1 "$repo_url" || exit 1
 
     # Change to the repository directory
     cd "$repo_name" || exit 1

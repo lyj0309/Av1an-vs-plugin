@@ -2,11 +2,12 @@ FROM masterofzen/av1an:master
 # RUN python vsrepo.py install kagefunc fvsfunc havsfunc vsTAAmbk mvsfunc muvsfunc nnedi3_resample vsutil lsmas
 USER root
 
+RUN pacman -Rsc  --noconfirm vapoursynth vmaf
+
 RUN sudo pacman -Syu --noconfirm && pacman -S python-pip git cmake --noconfirm && pip install meson ninja setuptools cython  wheel --break-system-package
 RUN sudo pacman -Syu --noconfirm && pacman -S boost opencl-headers nasm fftw --noconfirm   
 
-RUN pacman -Rsc  --noconfirm vapoursynth
-RUN pacman  -Syu --noconfirm --needed aom ffmpeg ffms2 libvpx mkvtoolnix-cli svt-av1 vmaf
+RUN pacman  -Syu --noconfirm --needed aom ffmpeg ffms2 libvpx mkvtoolnix-cli svt-av1 
 
 RUN git clone https://bitbucket.org/the-sekrit-twc/zimg.git --depth 1 --recurse-submodules --shallow-submodules &&\
     pushd zimg &&\
@@ -31,7 +32,7 @@ COPY build.sh /workspace/
 RUN chmod +x build.sh && ./build.sh 
 
 COPY build_other.sh /workspace/
-RUN chmod +x build.sh && ./build.sh 
+RUN chmod +x build_other.sh && ./build_other.sh 
 
 RUN pip install git+https://github.com/OpusGang/awsmfunc.git --break-system-packages && \
     pip install git+https://github.com/Jaded-Encoding-Thaumaturgy/vs-tools.git --break-system-packages && \

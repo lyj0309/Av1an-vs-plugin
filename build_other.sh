@@ -39,3 +39,6 @@ ninja -C build
 find build -name "*.so" -exec mv {} "$destination" \;
 cd ../../
 
+git clone --depth 1 https://github.com/Netflix/vmaf.git
+cd vmaf && make clean && make && pip3 install --no-cache-dir -r /vmaf/python/requirements.txt
+cd ..
