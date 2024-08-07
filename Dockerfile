@@ -40,8 +40,10 @@ RUN pip install git+https://github.com/OpusGang/awsmfunc.git --break-system-pack
     pip3 install git+https://github.com/HomeOfVapourSynthEvolution/havsfunc --break-system-packages
 
 
-COPY dolby_encoding_engine_install.bin /tmp/    
-COPY  Crack.zip /tmp/    
+COPY  dee.zip /opt/    
+RUN cd /opt && pacman -S unzip --noconfirm   && unzip dee.zip && rm dee.zip &&\
+   cd dolby_encoding_engine && chmod +x * && ln -s /opt/dolby_encoding_engine/dee /usr/bin/dee
+
 WORKDIR /videos
 RUN rm -r /workspace
 
