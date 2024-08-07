@@ -39,6 +39,9 @@ RUN pip install git+https://github.com/OpusGang/awsmfunc.git --break-system-pack
     pip3 install git+https://github.com/HomeOfVapourSynthEvolution/mvsfunc --break-system-packages  &&\
     pip3 install git+https://github.com/HomeOfVapourSynthEvolution/havsfunc --break-system-packages
 
+
+COPY dolby_encoding_engine_install.bin /tmp/    
+COPY  Crack.zip /tmp/    
 WORKDIR /videos
 RUN rm -r /workspace
 
